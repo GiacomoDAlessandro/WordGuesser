@@ -1,7 +1,29 @@
+<!DOCTYPE html>
 <head>
-    <title>Word Guesser</title>
+    <title>Wordle</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="function.js"></script>
+    <script>
+        function buttonClicked() {
+            console.log("buttonClicked")
+            document.querySelectorAll('button').forEach(buttonClicked)
+        }
+    </script>
 </head>
-    <h1>Word Guesser</h1>
 <body>
-    <input type="textArea" />
+<h1>Wordle</h1>
+<div class="big-box">
+
+</div>
+<div class="word-guess">
+    <textarea class="letter-box" maxlength="1"></textarea>
+    <textarea class="letter-box" maxlength="1"></textarea>
+    <textarea class="letter-box" maxlength="1"></textarea>
+    <textarea class="letter-box" maxlength="1"></textarea>
+    <textarea class="letter-box" maxlength="1"></textarea>
+</div>
+<input id="submitButton" type="button" value="submit" onClick="buttonClicked()"/>
+
+
 </body>
+</html>

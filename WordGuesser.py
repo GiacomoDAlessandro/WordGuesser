@@ -1,19 +1,22 @@
 import random
 
-name = input("Enter Your Name:")
 
-print ("Good Luck ! ", name)
+with open('backend/Words', 'r', encoding='utf-8') as file:
+    words = set(line.strip().lower() for line in file)
+
+
+word_list = list(words)
 
 turns = 5
 
-wordList = ["apple", "cases", "train", "cares", "share", "freak", "quick"]
+wordToGuess = random.choice(word_list)
 
-wordToGuess = random.choice(wordList)
 
 while (turns > 0):
     print("You have 5 guesses to guess the random 5 letter word")
     wordGuessed = input("Enter your guess: ")
 
+    
     if len(wordGuessed) != 5:
         print("Error: Enter a word with five letters")
         turns -= 1
