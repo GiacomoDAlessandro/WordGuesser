@@ -12,11 +12,9 @@ h1 {
 }
 
 .big-box {
-    border: 3px solid black;
-    width: 425px;
-    height: 420px;
+    width: 295px;
+    height: 450px;
     justify-content: center;
-    background-color: lightgray;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,11 +29,13 @@ h1 {
 
 .past-letter-box {
     width: 50px;
-    height: 50px;
+    height: 64px;
     border: 2px solid black;
     background-color: lightgray;
     font-size: 60px;
     resize: none;
+    align-items: center;
+    justify-content: center;
 }
 
 .word-guess {
@@ -47,13 +47,18 @@ h1 {
 
 .letter-box {
     width: 47px;
-    height: 68px;
+    height: 43px;
     border: 2px solid black;
     background-color: lightgray;
-    font-size: 60px;
     resize: none;
     text-transform: uppercase;
-    font-family: "BM Hanna 11yrs Old", Serif;
+    font-family: "BM Hanna 11yrs Old", serif;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5em;
+    line-height: 1;
+    padding: 0;
+    overflow: hidden;
 }
 
 #submitButton {
