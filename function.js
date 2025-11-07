@@ -1,20 +1,16 @@
-var num_guesses = 5;
+const bigBox = document.querySelector(".big-box");
 
-const fs = require('fs');
+for (let i = 0; i < 6; i++) {
+    const row = document.createElement("div");
+    row.className = "guess-row"
 
-const data = fs.readFileSync('Words', 'utf8');
+    for (let j = 0; j < 5; j++) {
+        const box = document.createElement("div");
+        box.className = "past-letter-box";
+        row.appendChild(box);
+    }
 
-const wordsArray = data.split(/\s+/);
-
-const wordsSet = new Set(wordsArray);
-
-
-let GuessedWord = prompt("Guess");
-
-if (wordsSet.has(GuessedWord)) {
-
-} else {
-    throw new Error("Make sure your guess is 5 letters long & is a real word!");
+    bigBox.appendChild(row);
 }
 
 function buttonClicked() {
