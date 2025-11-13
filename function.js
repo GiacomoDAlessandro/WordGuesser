@@ -1,3 +1,15 @@
+let words = [];
+fetch('Words')
+    .then(res => res.json())
+    .then(data => {
+        lines = data.split('\n');
+    })
+    .catch(err => console.error("Error loading words:", err));
+
+wordToGuess = words[Math.floor(Math.random() * words.length)];
+
+let turns = 0;
+
 document.addEventListener('DOMContentLoaded', function () {
 
 
@@ -31,6 +43,36 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 });
 
-function buttonClicked() {
 
+function buttonClicked() {
+    if (turns < 6) {
+        let wordGuessed = [...document.querySelectorAll('.letter-box')]
+            .map(box => box.value)
+            .join('');
+
+        try {
+            //Check word is 5 letters long
+            if (wordGuessed.length !== 5) {
+                throw Error("Word must be 5 letters long!");
+            }
+            //increment the turns if the word is valid
+        } catch (error) {
+            //Throw alert is word is not in a valid form
+            alert("Error: " + error.message);
+            return;
+        }
+
+        const rows = document.querySelectorAll('.guess-row')[turns];
+        const boxes = rows.querySelectorAll('.past-letter-box');
+        for (let i = 0; i < 5; i++) {
+            boxes[i].textContent = wordGuessed[i];
+        }
+
+        turns++
+
+        if (wordGuessed === wordToGuess) {
+
+        }
+    }
 }
+
