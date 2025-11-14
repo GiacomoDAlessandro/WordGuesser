@@ -5,7 +5,7 @@ fetch('Words')
     .then(data => {
         words = data.split('\n').map(word => word.trim());
         wordToGuess = "apple";
-            //words[Math.floor(Math.random() * words.length)];
+        //words[Math.floor(Math.random() * words.length)];
         console.log(wordToGuess);
     })
     .catch(err => console.error("Error loading words:", err));
@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', function () {
         })
 
         box.addEventListener('keydown', (e) => {
-
             if (e.key === 'Enter') {
-                buttonClicked();
+                e.preventDefault();
+                submitButtonClicked();
             }
 
             if (e.key === 'Backspace' || e.key === 'Delete' ||
@@ -61,8 +61,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 const input = document.querySelector("input");
 
+function lostGame() {
+    document.querySelectorAll('.letter-box').forEach(box => {
+        box.disabled = true;
+    })
+    const lostGame = document.getElementById('lostGame');
+    lostGame.style.display = "block";
+    lostGame.textContent = "Ran Out Of Turns. Correct word was: " + wordToGuess;
+}
 
-function buttonClicked() {
+function submitButtonClicked() {
     if (turns < 6) {
         let wordGuessed = [...document.querySelectorAll('.letter-box')]
             .map(box => box.value)
@@ -109,19 +117,28 @@ function buttonClicked() {
                 if (wordGuessed[i].toLowerCase() === wordToGuess[i].toLowerCase()) {
                     boxes[i].style.backgroundColor = "green";
                 } else {
-                   for (let j = 0; j < wordToGuess.length; j++) {
-                       if (wordGuessed[i].toLowerCase() === wordToGuess[j].toLowerCase()) {
-                           boxes[i].style.backgroundColor = "yellow";
-                       }
-                   }
+                    for (let j = 0; j < wordToGuess.length; j++) {
+                        if (wordGuessed[i].toLowerCase() === wordToGuess[j].toLowerCase()) {
+                            boxes[i].style.backgroundColor = "yellow";
+                        }
+                    }
                 }
             }
         }
-    } else {
+        if (turns === 6) {
+            lostGame();
+        }
         document.querySelectorAll('.letter-box').forEach(box => {
-            box.disabled = true;
-
+            box.value = '';
         })
+    } else {
+        lostGame()
     }
+
+
+}
+
+function tryAgain() {
+    wordToGuess = words[Math.floor(Math.random() * words.length)];
 }
 

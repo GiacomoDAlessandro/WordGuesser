@@ -82,10 +82,26 @@ h1 {
 .correctWord {
     display: none;
     position: absolute;
-    background-color: green;
+    background-color: forestgreen;
     height: 23px;
     width: 63px;
-
     font-family: "BM Hanna 11yrs Old", serif;
 }
 
+.lostTheGame {
+    display: none;
+    position: absolute;
+    background-color: crimson;
+    font-family: "BM Hanna 11yrs Old", serif;
+    font-size: 19px;
+}
+
+#tryAgain {
+    display: none;
+    font-family: "BM Hanna 11yrs Old", serif;
+    font-size: 19px;
+    height: 34px;
+    width: 106px;
+    margin: 20px auto 0 auto;
+    background-color: forestgreen;
+}

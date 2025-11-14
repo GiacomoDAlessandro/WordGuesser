@@ -14,10 +14,13 @@
     <textarea class="letter-box" maxlength="1"></textarea>
 </div>
 
-<div class ="error-box" id="incorrectWordError"></div>
+<div class="error-box" id="incorrectWordError"></div>
 <div class="correctWord" id="correctWordCongrats"></div>
 
-<input id="submitButton" type="button" value="submit" onClick="buttonClicked()"/>
+<div class="lostTheGame" id="lostGame"></div>
+
+<input id="submitButton" type="button" value="submit" onClick="submitButtonClicked()"/>
+<input id="tryAgain" type="button" value="try again" onClick="tryAgain()"/>
 
 <script src="function.js"></script>
 </body>
