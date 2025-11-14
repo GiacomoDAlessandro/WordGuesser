@@ -1,12 +1,14 @@
 let words = [];
+let wordToGuess = "";
 fetch('Words')
-    .then(res => res.json())
+    .then(res => res.text())
     .then(data => {
-        lines = data.split('\n');
+        words = data.split('\n').map(word => word.trim());
+        wordToGuess = "apple";
+            //words[Math.floor(Math.random() * words.length)];
+        console.log(wordToGuess);
     })
     .catch(err => console.error("Error loading words:", err));
-
-wordToGuess = words[Math.floor(Math.random() * words.length)];
 
 let turns = 0;
 
@@ -29,19 +31,35 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     document.querySelectorAll('.letter-box').forEach((box, index, boxes) => {
-        box.addEventListener('input', () => {
+        box.addEventListener('input', (e) => {
             if (box.value.length === 1 && index < boxes.length - 1) {
                 boxes[index + 1].focus();
             }
         })
 
         box.addEventListener('keydown', (e) => {
-            if (e.key === 'Backspace' && box.value === '' && index > 0) {
-                boxes[index - 1].focus();
+
+            if (e.key === 'Enter') {
+                buttonClicked();
+            }
+
+            if (e.key === 'Backspace' || e.key === 'Delete' ||
+                e.key === 'Tab' || e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+
+                if (e.key === 'Backspace' && box.value === '' && index > 0) {
+                    boxes[index - 1].focus();
+                }
+                return;
+            }
+            if (!/^[a-zA-Z]$/.test(e.key)) {
+                e.preventDefault();
             }
         })
     })
-});
+})
+
+
+const input = document.querySelector("input");
 
 
 function buttonClicked() {
@@ -70,9 +88,40 @@ function buttonClicked() {
 
         turns++
 
-        if (wordGuessed === wordToGuess) {
+        if (wordGuessed.toLowerCase() === wordToGuess.toLowerCase()) {
+            const correctWordPop = document.getElementById('correctWordCongrats');
+            correctWordPop.textContent = "Correct!";
+            correctWordPop.style.display = "block";
 
+            setTimeout(() => {
+                correctWordPop.style.display = "none";
+            }, 5000);
+
+            for (let i = 0; i < 5; i++) {
+                boxes[i].style.backgroundColor = "green";
+            }
+
+            document.querySelectorAll('.letter-box').forEach(box => {
+                box.disabled = true;
+            })
+        } else {
+            for (let i = 0; i < wordGuessed.length; i++) {
+                if (wordGuessed[i].toLowerCase() === wordToGuess[i].toLowerCase()) {
+                    boxes[i].style.backgroundColor = "green";
+                } else {
+                   for (let j = 0; j < wordToGuess.length; j++) {
+                       if (wordGuessed[i].toLowerCase() === wordToGuess[j].toLowerCase()) {
+                           boxes[i].style.backgroundColor = "yellow";
+                       }
+                   }
+                }
+            }
         }
+    } else {
+        document.querySelectorAll('.letter-box').forEach(box => {
+            box.disabled = true;
+
+        })
     }
 }
 

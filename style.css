@@ -36,6 +36,8 @@ h1 {
     resize: none;
     align-items: center;
     justify-content: center;
+    font-family: "BM Hanna 11yrs Old", serif;
+    text-transform: uppercase;
 }
 
 .word-guess {
@@ -44,6 +46,7 @@ h1 {
     gap: 5px;
     justify-content: center;
 }
+
 
 .letter-box {
     width: 50px;
@@ -76,8 +79,13 @@ h1 {
     position: absolute;
 }
 
-.correctWordError {
+.correctWord {
     display: none;
     position: absolute;
+    background-color: green;
+    height: 23px;
+    width: 63px;
 
+    font-family: "BM Hanna 11yrs Old", serif;
 }
+
