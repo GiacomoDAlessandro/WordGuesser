@@ -4,8 +4,7 @@ fetch('Words')
     .then(res => res.text())
     .then(data => {
         words = data.split('\n').map(word => word.trim());
-        wordToGuess = "apple";
-        //words[Math.floor(Math.random() * words.length)];
+        wordToGuess = words[Math.floor(Math.random() * words.length)];
         console.log(wordToGuess);
     })
     .catch(err => console.error("Error loading words:", err));
@@ -65,9 +64,8 @@ function lostGame() {
     document.querySelectorAll('.letter-box').forEach(box => {
         box.disabled = true;
     })
-    const lostGame = document.getElementById('lostGame');
-    lostGame.style.display = "block";
-    lostGame.textContent = "Ran Out Of Turns. Correct word was: " + wordToGuess;
+    document.getElementById('correctWord').textContent = wordToGuess;
+    document.querySelector('.pop-up').style.display = "flex";
 }
 
 function submitButtonClicked() {
@@ -112,6 +110,7 @@ function submitButtonClicked() {
             document.querySelectorAll('.letter-box').forEach(box => {
                 box.disabled = true;
             })
+            return;
         } else {
             for (let i = 0; i < wordGuessed.length; i++) {
                 if (wordGuessed[i].toLowerCase() === wordToGuess[i].toLowerCase()) {
@@ -125,17 +124,20 @@ function submitButtonClicked() {
                 }
             }
         }
+        resetGuess();
         if (turns === 6) {
             lostGame();
         }
-        document.querySelectorAll('.letter-box').forEach(box => {
-            box.value = '';
-        })
     } else {
         lostGame()
     }
+}
 
-
+function resetGuess() {
+    document.querySelectorAll('.letter-box').forEach(box => {
+        box.value = '';
+    })
+    document.querySelector('.letter-box').focus();
 }
 
 function tryAgain() {

@@ -96,6 +96,39 @@ h1 {
     font-size: 19px;
 }
 
+.pop-up {
+    display: none;
+    padding-top: 100px;
+    position: fixed;
+    z-index: 1000;
+    width: 34%;
+    height: 69%;
+    background-color: white;
+    border: 1px solid black;
+    justify-content: cetner;
+
+}
+
+.content {
+    font-family: "BM Hanna 11yrs Old", serif;
+
+}
+
+.content h1 {
+    font-family: "BM Hanna 11yrs Old", serif;
+    align-items: center;
+
+}
+
+.content h2 {
+    font-family: "BM Hanna 11yrs Old", serif;
+    align-items: center;
+}
+
+.content p {
+
+}
+
 #tryAgain {
     display: none;
     font-family: "BM Hanna 11yrs Old", serif;
@@ -105,3 +138,4 @@ h1 {
     margin: 20px auto 0 auto;
     background-color: forestgreen;
 }
+

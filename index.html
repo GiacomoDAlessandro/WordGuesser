@@ -20,7 +20,14 @@
 <div class="lostTheGame" id="lostGame"></div>
 
 <input id="submitButton" type="button" value="submit" onClick="submitButtonClicked()"/>
-<input id="tryAgain" type="button" value="try again" onClick="tryAgain()"/>
+
+<div class="pop-up" id="popUp">
+    <div class="content">
+        <h1>Ran Out Of Turns!</h1>
+        <h2>Correct Word Was: <span id="correctWord"></span></h2>
+        <input id="tryAgain" type="button" value="try again" onClick="tryAgain()"/>
+    </div>
+</div>
 
 <script src="function.js"></script>
 </body>
