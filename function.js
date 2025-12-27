@@ -9,8 +9,10 @@ fetch('Words')
     })
     .catch(err => console.error("Error loading words:", err));
 
-
+let won = false;
 let turns = 0;
+const writingBoxes = document.querySelectorAll('.letter-box');
+writingBoxes[0].focus();
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -105,6 +107,8 @@ function submitButtonClicked() {
             correctWordPop.textContent = "Correct!";
             correctWordPop.style.display = "block";
 
+            won = true;
+
             setTimeout(() => {
                 correctWordPop.style.display = "none";
             }, 5000);
@@ -116,6 +120,7 @@ function submitButtonClicked() {
             document.querySelectorAll('.letter-box').forEach(box => {
                 box.disabled = true;
             })
+            document.getElementById('submitButton').disabled = true;
             return;
         } else {
             for (let i = 0; i < wordGuessed.length; i++) {
@@ -144,6 +149,7 @@ function resetGuess() {
         box.value = '';
     })
     document.querySelector('.letter-box').focus();
+    won = false;
 }
 
 function tryAgain() {
